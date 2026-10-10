@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+  Animated Glass Login Form
+  by @she.codesdaily  — free to use in your projects 💗
+  Open this file in your browser to see it.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Login Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: linear-gradient(180deg, #fbe3d5 0%, #f7d3bf 100%);
+      overflow: hidden;
+    }
+
+    /* soft pink blobs behind the glass so the blur is visible */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(40px);
+      z-index: -1;
+    }
+    body::before { background: #ff9cc6; top: 10%; left: 15%; }
+    body::after  { background: #ffd08a; bottom: 5%; right: 15%; }
+
+    /* ---------- the glass card ---------- */
+    .login {
+      width: min(100%, 420px);
+      padding: 34px 32px 28px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.42);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 30px 60px rgba(140, 60, 40, 0.22);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transform-origin: 0% 100%;
+      /* the "pop" from the reel: overshoot = bounce */
+      animation: pop 0.7s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: translate(-60px, 80px) scale(0) rotate(-10deg); }
+      to   { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }
+    }
+
+    .login h2 {
+      margin: 0;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 40px;
+      color: #1a0d13;
+    }
+
+    .login .sub {
+      margin: -4px 0 6px;
+      color: #5e4048;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    /* ---------- inputs ---------- */
+    .field {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 56px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(140, 60, 40, 0.08);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field:focus-within {
+      border-color: #ff5fa2;
+      box-shadow: 0 0 0 5px rgba(255, 95, 162, 0.18);
+    }
+
+    .field svg { flex: none; }
+
+    .field input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: none;
+      background: transparent;
+      font: inherit;
+      font-size: 17px;
+      color: #1a0d13;
+    }
+
+    .field input::placeholder { color: #a88c93; }
+
+    /* ---------- button ---------- */
+    .btn {
+      height: 58px;
+      margin-top: 4px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: #fff;
+      background: linear-gradient(90deg, #ff5fa2, #ff8fc0);
+      box-shadow: 0 10px 24px rgba(255, 95, 162, 0.35);
+      transition: transform 0.15s, background 0.3s, color 0.3s;
+    }
+
+    .btn:hover  { transform: translateY(-2px); }
+    .btn:active { transform: scale(0.96); }
+
+    .btn.success {
+      color: #0e2c2a;
+      background: linear-gradient(90deg, #7bd8a0, #a8ebc0);
+      box-shadow: 0 10px 24px rgba(123, 216, 160, 0.45);
+    }
+
+    .alt {
+      text-align: center;
+      color: #5e4048;
+      font-size: 15px;
+    }
+    .alt a { color: #e2468a; font-weight: 700; text-decoration: none; }
+
+    /* respect users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+      .login { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <form class="login" id="loginForm">
+    <h2>Log in</h2>
+    <p class="sub">Welcome back! Log in to access your courses.</p>
+
+    <label class="field">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2417c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/>
+      </svg>
+      <input type="email" name="email" placeholder="Email" aria-label="Email" required>
+    </label>
+
+    <label class="field">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c2417c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      </svg>
+      <input type="password" name="password" placeholder="Password" aria-label="Password" required minlength="6">
+    </label>
+
+    <button class="btn" type="submit" id="btn">LOG IN</button>
+
+    <p class="alt">No account yet? <a href="#">Create one</a></p>
+  </form>
+
+  <script>
+    // Demo only: shows the success state from the reel.
+    // In a real app, send the data to your backend here.
+    const form = document.getElementById("loginForm");
+    const btn = document.getElementById("btn");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      btn.textContent = "LOGGED IN ✓";
+      btn.classList.add("success");
+    });
+  </script>
+
+</body>
+</html>
